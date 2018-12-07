@@ -1,0 +1,14 @@
+CREATE DATABASE memberdb DEFAULT CHARACTER SET utf8;
+
+GRANT ALL ON memberdb.* TO 'cyberpunk'@'localhost' IDENTIFIED BY 'hello123';
+
+USE memberdb;
+
+CREATE TABLE members(
+	member_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+    member_name VARCHAR(128),
+    member_email VARCHAR(128),
+    member_password VARCHAR(128),
+    PRIMARY KEY(member_id),
+    INDEX(member_email)
+);

@@ -1,0 +1,11 @@
+CREATE DATABASE misc DEFAULT CHARACTER SET utf8;
+
+CREATE TABLE autos(
+	auto_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+    auto_make VARCHAR(128),
+    auto_year INTEGER,
+    auto_mileage INTEGER,
+    PRIMARY KEY(auto_id)
+);
+
+GRANT ALL ON misc.* TO 'cyberpunk'@'localhost' IDENTIFIED BY 'hello123';

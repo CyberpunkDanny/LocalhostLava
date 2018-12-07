@@ -1,0 +1,14 @@
+CREATE DATABASE autosCRUD DEFAULT CHARACTER SET utf8;
+
+GRANT ALL ON autosCRUD.* TO 'cyberpunk'@'localhost' IDENTIFIED BY 'hello123';
+
+USE autosCRUD;
+CREATE TABLE autos(
+		auto_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+    	auto_make VARCHAR(128),
+    	auto_model VARCHAR(128),
+    	auto_year INTEGER,
+    	auto_mileage INTEGER,
+    	PRIMARY KEY(auto_id),
+    	INDEX(auto_model)
+);

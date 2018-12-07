@@ -1,0 +1,40 @@
+CREATE DATABASE profilesDB DEFAULT CHARACTER SET utf8;
+GRANT ALL ON profilesDB.* TO 'cyberpunk'@'localhost' IDENTIFIED BY 'hello123';
+
+USE profilesDB;
+
+CREATE TABLE users(
+	user_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+    user_name VARCHAR(128),
+    user_email VARCHAR(128),
+    user_password VARCHAR(128),
+    PRIMARY KEY(user_id),
+    INDEX(user_email)
+);
+
+CREATE TABLE profiles(
+	profile_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+    profile_firstName VARCHAR(128),
+    profile_lastName VARCHaR(128),
+    profile_email VARCHaR(128),
+    profile_headline VARCHaR(128),
+    profile_summary VARCHaR(128),
+    profile_userid INTEGER,
+    PRIMARY KEY(profile_id),
+    INDEX(profile_email),
+    INDEX(profile_firstName)
+);
+
+ALTER TABLE profiles DROP profile_userId;
+ALTER TABLE profiles ADD profile_userId INTEGER UNSIGNED NOT NULL;
+ALTER TABLE profiles ADD CONSTRAINT FOREIGN KEY (profile_userId) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE
+
+CREATE TABLE position (
+	position_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+    position_year INTEGER UNSIGNED,
+    position_desc VARCHAR(128),
+    position_profileId INTEGER UNSIGNED NOT NULL,
+    PRIMARY KEY(position_id),
+    CONSTRAINT FOREIGN KEY(position_profileId) REFERENCES profiles(profile_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
